@@ -1,0 +1,19 @@
+{
+  "name": "Looks Salon",
+  "short_name": "Looks",
+  "description": "Looks Salon rate card for beauty and grooming services.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "background_color": "#fffaf2",
+  "theme_color": "#711d3c",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
