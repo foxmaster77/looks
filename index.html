@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Looks Salon — Rate Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --cream:#fffaf2;
+    --ink:#2a1c1e;
+    --ink-soft:#6b5a5c;
+    --maroon:#711d3c;
+    --maroon-deep:#4a1128;
+    --gold:#c6963a;
+    --gold-light:#eecf8f;
+    --marigold:#e08a2b;
+    --line:#eee0cf;
+    --was:#b6a9a4;
+    --radius:2px;
+    --maxw:920px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Poppins',sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Yatra One',cursive;
+    font-weight:400;
+    letter-spacing:.5px;
+    color:var(--maroon);
+  }
+  ::selection{background:var(--gold-light); color:var(--maroon-deep);}
+
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- top nav ---------- */
+  .topnav{
+    position:sticky; top:0; z-index:40;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav-inner{
+    max-width:1180px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+  }
+  .brandmark{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Yatra One',cursive; font-size:20px; color:var(--maroon);
+    white-space:nowrap;
+  }
+  .brandmark .dot{width:8px;height:8px;border-radius:50%;background:var(--marigold);}
+  .navlinks{
+    display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;
+  }
+  .navlinks::-webkit-scrollbar{display:none;}
+  .navlinks a{
+    position:relative;
+    font-size:13px; padding:9px 14px; white-space:nowrap;
+    color:var(--ink-soft); border-radius:999px;
+    transition:color .25s ease, background .25s ease;
+  }
+  .navlinks a:hover{color:var(--maroon);}
+  .navlinks a.active{color:var(--maroon-deep); background:var(--cream);}
+  .navlinks a.active::after{
+    content:''; position:absolute; left:16px; right:16px; bottom:4px; height:2px;
+    background:linear-gradient(90deg,var(--marigold),var(--maroon));
+    border-radius:2px;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; overflow:hidden;
+    color:var(--cream);
+    padding:120px 24px 90px;
+    background:linear-gradient(120deg,#4a1128,#711d3c 32%,#a8492f 62%,#e08a2b 100%);
+    background-size:220% 220%;
+    animation:heroshift 18s ease-in-out infinite;
+  }
+  @keyframes heroshift{
+    0%{background-position:0% 30%;}
+    50%{background-position:100% 70%;}
+    100%{background-position:0% 30%;}
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:radial-gradient(circle at 18% 20%, rgba(255,255,255,.10), transparent 40%),
+                      radial-gradient(circle at 85% 80%, rgba(255,255,255,.10), transparent 45%);
+    pointer-events:none;
+  }
+  .motif{
+    position:absolute; opacity:.16; pointer-events:none;
+  }
+  .motif.m1{ top:-60px; left:-70px; width:340px; animation:spin 90s linear infinite;}
+  .motif.m2{ bottom:-90px; right:-80px; width:400px; animation:spin 120s linear infinite reverse;}
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .hero-eyebrow{
+    font-size:13px; letter-spacing:2.5px; color:var(--gold-light);
+    margin-bottom:18px; font-weight:500;
+  }
+  .hero h1{
+    font-size:clamp(52px,10vw,110px);
+    line-height:.95; margin:0 0 6px;
+    color:var(--white);
+    text-shadow:0 6px 30px rgba(0,0,0,.18);
+  }
+  .hero .salon{
+    display:block; font-family:'Poppins',sans-serif; font-weight:300;
+    font-size:clamp(15px,2.4vw,20px); letter-spacing:10px; color:var(--gold-light);
+    margin-top:4px;
+  }
+  .hero p.tag{
+    max-width:520px; margin:26px auto 0; font-size:16px; line-height:1.7;
+    color:rgba(255,250,242,.86); font-weight:300;
+  }
+  .hero .cta{
+    margin-top:40px; display:inline-flex; align-items:center; gap:10px;
+    padding:14px 30px; border:1px solid rgba(255,255,255,.55);
+    border-radius:999px; font-size:13px; letter-spacing:1.5px;
+    color:var(--white); transition:background .3s ease, transform .3s ease, border-color .3s ease;
+  }
+  .hero .cta:hover{ background:rgba(255,255,255,.14); transform:translateY(-2px); border-color:#fff; }
+  .scrollcue{
+    position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
+    width:1px; height:46px; background:linear-gradient(rgba(255,255,255,.9),rgba(255,255,255,0));
+  }
+  .scrollcue::after{
+    content:''; position:absolute; left:-3px; top:0; width:7px; height:7px; border-radius:50%;
+    background:var(--gold-light); animation:cuemove 2.2s ease-in-out infinite;
+  }
+  @keyframes cuemove{ 0%{ top:0; opacity:0;} 20%{opacity:1;} 100%{ top:40px; opacity:0;} }
+
+  /* ---------- section shell ---------- */
+  section.block{ max-width:var(--maxw); margin:0 auto; padding:96px 24px 20px; }
+  .kicker{
+    font-size:12px; letter-spacing:3px; color:var(--marigold); font-weight:600;
+    margin-bottom:10px;
+  }
+  .block h2{ font-size:clamp(30px,5vw,44px); margin:0 0 14px; }
+  .block > p.lede{
+    max-width:560px; color:var(--ink-soft); font-size:15px; line-height:1.75;
+    margin:0 0 46px; font-weight:300;
+  }
+
+  .divider{
+    width:100%; display:flex; justify-content:center; margin:80px 0 0;
+    opacity:.75;
+  }
+  .divider svg{ width:96px; height:22px; }
+
+  /* ---------- gender toggle ---------- */
+  .toggle-wrap{
+    display:inline-flex; align-items:center; background:var(--cream);
+    border:1px solid var(--line); border-radius:999px; padding:4px; margin-bottom:44px;
+    position:relative;
+  }
+  .toggle-wrap button{
+    position:relative; z-index:2; border:none; background:transparent;
+    font-family:'Poppins',sans-serif; font-size:13px; letter-spacing:1px; font-weight:500;
+    padding:10px 26px; border-radius:999px; cursor:pointer; color:var(--ink-soft);
+    transition:color .35s ease;
+  }
+  .toggle-wrap button.active{ color:var(--white); }
+  .toggle-slider{
+    position:absolute; top:4px; bottom:4px; left:4px;
+    width:calc(50% - 4px); border-radius:999px;
+    background:linear-gradient(120deg,var(--maroon),var(--marigold));
+    transition:transform .45s cubic-bezier(.2,.8,.2,1);
+    z-index:1;
+  }
+  .toggle-wrap[data-active="1"] .toggle-slider{ transform:translateX(100%); }
+
+  .gender-panel{ display:none; }
+  .gender-panel.show{
+    display:block;
+    animation:fadein .5s ease both;
+  }
+  @keyframes fadein{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- subsection / rows ---------- */
+  .subsection{ margin-bottom:44px; }
+  .subsection:last-child{ margin-bottom:0; }
+  .subsection h3{
+    font-size:19px; margin:0 0 14px; color:var(--ink);
+    font-family:'Poppins',sans-serif; font-weight:600;
+    display:flex; align-items:center; gap:10px;
+  }
+  .subsection h3::before{
+    content:''; width:14px; height:14px; border-radius:50%;
+    background:linear-gradient(135deg,var(--marigold),var(--maroon));
+    flex:none;
+  }
+  .subsection .note{ font-size:11.5px; color:var(--ink-soft); font-weight:300; margin:-8px 0 12px 24px;}
+
+  .row{
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px;
+    padding:13px 4px; border-bottom:1px dashed var(--line);
+    transition:background .25s ease, padding-left .25s ease;
+  }
+  .row:hover{ background:linear-gradient(90deg,var(--cream),transparent); padding-left:10px; }
+  .row .name{ font-size:14.5px; color:var(--ink); font-weight:400; }
+  .row .price{
+    font-size:15px; font-weight:600; color:var(--maroon-deep); white-space:nowrap;
+  }
+  .row .was{
+    font-size:12px; color:var(--was); text-decoration:line-through; font-weight:400; margin-right:8px;
+  }
+  .row .price small{ font-weight:400; color:var(--ink-soft); font-size:11px; }
+
+  /* ---------- ritual tiers (keratase) ---------- */
+  .tiers{ display:flex; flex-direction:column; gap:22px; }
+  .tier{
+    border:1px solid var(--line); border-radius:var(--radius); padding:26px 26px 8px;
+    position:relative; background:linear-gradient(180deg,var(--cream),#fff);
+  }
+  .tier .tiernum{
+    position:absolute; top:-14px; left:24px; background:var(--maroon); color:var(--gold-light);
+    font-family:'Yatra One',cursive; font-size:13px; padding:5px 14px; border-radius:999px;
+    letter-spacing:1px;
+  }
+  .tier h3{ margin-top:6px; }
+
+  /* ---------- facial group headers ---------- */
+  .group-title{
+    font-family:'Yatra One',cursive; color:var(--marigold); font-size:15px;
+    letter-spacing:1px; margin:0 0 4px;
+  }
+  .group-sub{ font-size:11.5px; color:var(--ink-soft); margin:0 0 14px; }
+
+  /* ---------- footer ---------- */
+  footer{
+    margin-top:120px; padding:70px 24px 40px; text-align:center;
+    background:linear-gradient(180deg,#fff,var(--cream));
+    border-top:1px solid var(--line);
+  }
+  footer h2{ font-size:30px; margin-bottom:10px; }
+  footer p{ color:var(--ink-soft); font-size:13.5px; max-width:420px; margin:0 auto 26px; font-weight:300; line-height:1.7;}
+  footer .fine{ margin-top:40px; font-size:11px; color:var(--was); letter-spacing:.5px; }
+
+  @media(max-width:640px){
+    section.block{padding:70px 20px 10px;}
+    .topnav-inner{padding:12px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brandmark"><span class="dot"></span>LOOKS <span style="font-family:'Poppins',sans-serif;font-weight:300;font-size:13px;letter-spacing:3px;color:var(--ink-soft);">SALON</span></div>
+    <div class="navlinks" id="navlinks">
+      <a href="#hair">Hair</a>
+      <a href="#scalp">Scalp &amp; Spa</a>
+      <a href="#keratase">Keratase Rituals</a>
+      <a href="#facials">Facials</a>
+      <a href="#waxing">Waxing &amp; Bleach</a>
+      <a href="#skin">Nails &amp; Skin</a>
+      <a href="#threading">Threading</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="motif m1" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 10 C140 10 170 50 150 90 C135 120 90 110 90 140 C90 165 120 175 150 165" stroke="#F4E3B0" stroke-width="1.4"/>
+    <circle cx="100" cy="10" r="4" fill="#F4E3B0"/>
+    <circle cx="150" cy="165" r="4" fill="#F4E3B0"/>
+    <path d="M60 40 C30 60 30 100 60 120 C80 133 60 150 40 145" stroke="#F4E3B0" stroke-width="1" opacity=".7"/>
+  </svg>
+  <svg class="motif m2" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 190 C60 190 30 150 50 110 C65 80 110 90 110 60 C110 35 80 25 50 35" stroke="#F4E3B0" stroke-width="1.4"/>
+    <circle cx="100" cy="190" r="4" fill="#F4E3B0"/>
+    <circle cx="50" cy="35" r="4" fill="#F4E3B0"/>
+  </svg>
+
+  <div class="hero-eyebrow">EST. IN THE HEART OF KOLKATA</div>
+  <h1>LOOKS<span class="salon">S A L O N</span></h1>
+  <p class="tag">Hair, skin and beauty rituals drawn from Kolkata's own salon chairs — every service, every price, laid out like a proper Bengali thaali: no surprises, just good taste.</p>
+  <a href="#hair" class="cta">EXPLORE THE RATE CARD ↓</a>
+  <div class="scrollcue"></div>
+</header>
+
+<!-- ===================== HAIR ===================== -->
+<section class="block" id="hair">
+  <div class="kicker reveal">01 — SERVICES</div>
+  <h2 class="reveal">Hair, Cut &amp; Colour</h2>
+  <p class="lede reveal">From a Sunday-morning trim to a full balayage transformation — pick your chair.</p>
+
+  <div class="toggle-wrap reveal" data-active="0" id="hairToggle">
+    <div class="toggle-slider"></div>
+    <button class="active" data-gender="gents">GENTS</button>
+    <button data-gender="ladies">LADIES</button>
+  </div>
+
+  <div class="gender-panel show" data-panel="gents" data-group="hair">
+    <div class="subsection reveal">
+      <h3>Cut &amp; Care</h3>
+      <div class="row"><span class="name">Hair Cut</span><span class="price"><span class="was">₹300</span>₹500</span></div>
+      <div class="row"><span class="name">Child Hair Cut (0–5 yrs)</span><span class="price"><span class="was">₹250</span>₹400</span></div>
+      <div class="row"><span class="name">Creative Hair Cut</span><span class="price">₹550</span></div>
+    </div>
+    <div class="subsection reveal">
+      <h3>Beard Care</h3>
+      <div class="row"><span class="name">Shave</span><span class="price"><span class="was">₹150</span>₹300</span></div>
+      <div class="row"><span class="name">Beard Trim</span><span class="price"><span class="was">₹250</span>₹400</span></div>
+      <div class="row"><span class="name">Beard Styling</span><span class="price">₹500</span></div>
+      <div class="row"><span class="name">Beard Colour</span><span class="price">₹700</span></div>
+    </div>
+    <div class="subsection reveal">
+      <h3>Wash &amp; Condition</h3>
+      <div class="row"><span class="name">Hair Wash</span><span class="price"><span class="was">₹100</span>₹150</span></div>
+      <div class="row"><span class="name">Conditioner</span><span class="price">₹150</span></div>
+      <div class="row"><span class="name">Wash &amp; Conditioner</span><span class="price"><span class="was">₹200</span>₹300</span></div>
+      <div class="row"><span class="name">Wash &amp; Condition (Kids)</span><span class="price">₹500 / ₹700</span></div>
+      <div class="row"><span class="name">Head Massage <small style="color:var(--ink-soft);">(30 mins)</small></span><span class="price"><span class="was">₹500</span>₹600</span></div>
+    </div>
+    <div class="subsection reveal">
+      <h3>Colour</h3>
+      <div class="row"><span class="name">Hair Colour</span><span class="price"><span class="was">₹1,000</span>₹1,300</span></div>
+      <div class="row"><span class="name">Hair Colour — Ammonia Free</span><span class="price"><span class="was">₹1,200</span>₹1,400</span></div>
+      <div class="row"><span class="name">Hi-Lites</span><span class="price"><span class="was">₹2,000</span>₹2,500</span></div>
+    </div>
+    <div class="subsection reveal">
+      <h3>Texture</h3>
+      <div class="row"><span class="name">Straightening</span><span class="price"><span class="was">₹3,500</span>₹4,000</span></div>
+      <div class="row"><span class="name">Smoothening</span><span class="price"><span class="was">₹3,500</span>₹4,000</span></div>
+      <div class="row"><span class="name">Rebonding</span><span class="price"><span class="was">₹3,500</span>₹4,000</span></div>
+      <div class="row"><span class="name">Keratin</span><span class="price">₹4,000</span></div>
+    </div>
+  </div>
+
+  <div class="gender-panel" data-panel="ladies" data-group="hair">
+    <div class="subsection reveal">
+      <h3>Cut &amp; Style</h3>
+      <div class="row"><span class="name">Hair Cut</span><span class="price"><span class="was">₹600</span>₹900</span></div>
+      <div class="row"><span class="name">Hair Cut — Child (0–5 yrs)</span><span class="price"><span class="was">₹300</span>₹600</span></div>
+      <div class="row"><span class="name">Creative Hair Cut</span><span class="price">₹1,200</span></div>
+    </div>
+    <div class="subsection reveal">
+      <h3>Wash &amp; Condition</h3>
+      <div class="row"><span class="name">Hair Wash</span><span class="price">₹200</span></div>
+      <div class="row"><span class="name">Conditioner</span><span class="price">₹200</span></div>
+      <div class="row"><span class="name">Hair Wash + Conditioner</span><span class="price">₹400</span></div>
+      <div class="row"><span class="name">Wash + Conditioner (Kids)</span><span class="price">₹350 <small>each</small></span></div>
+      <div class="row"><span class="name">Hair Wash &amp; Conditioner (combo)</span><span class="price">₹700</span></div>
+      <div class="row"><span class="name">Head Massage <small style="color:var(--ink-soft);">(30 mins)</small></span><span class="price"><span class="was">₹500</span>₹600</span></div>
+    </div>
+    <div class="subsection reveal">
+      <h3>Styling <span style="font-size:11px;color:var(--ink-soft);font-weight:400;">(onwards)</span></h3>
+      <div class="row"><span class="name">Blow Dry Straight</span><span class="price">₹500</span></div>
+      <div class="row"><span class="name">Ironing</span><span class="price">₹800</span></div>
+      <div class="row"><span class="name">Tong Curls</span><span class="price">₹1,000</span></div>
+      <div class="row"><span class="name">Hair Set &amp; Upstyle</span><span class="price">₹1,500</span></div>
+    </div>
+    <div class="subsection reveal">
+      <h3>Colour <span style="font-size:11px;color:var(--ink-soft);font-weight:400;">(onwards)</span></h3>
+      <div class="row"><span class="name">Root Touch Up</span><span class="price"><span class="was">₹1,100</span>₹1,400</span></div>
+      <div class="row"><span class="name">Root Touch Up — Ammonia Free</span><span class="price"><span class="was">₹1,300</span>₹1,500</span></div>
+      <div class="row"><span class="name">Global Hair Colour</span><span class="price">₹5,000</span></div>
+      <div class="row"><span class="name">Global Colour + Bond Protection</span><span class="price">₹6,000</span></div>
+      <div class="row"><span class="name">Hi-Lites</span><span class="price">₹6,500</span></div>
+      <div class="row"><span class="name">Balayage</span><span class="price">₹6,500</span></div>
+      <div class="row"><span class="name">French Balayage</span><span class="price">₹7,500</span></div>
+    </div>
+    <div class="subsection reveal">
+      <h3>Texture <span style="font-size:11px;color:var(--ink-soft);font-weight:400;">(onwards)</span></h3>
+      <div class="row"><span class="name">Smoothening</span><span class="price">₹7,000</span></div>
+      <div class="row"><span class="name">Keratin Treatment</span><span class="price">₹7,000</span></div>
+      <div class="row"><span class="name">Botox</span><span class="price">₹7,000</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal"><svg viewBox="0 0 100 24"><path d="M0 12 C20 -4 30 28 50 12 C70 -4 80 28 100 12" stroke="#c6963a" stroke-width="1.4" fill="none"/></svg></div>
+
+<!-- ===================== SCALP & SPA ===================== -->
+<section class="block" id="scalp">
+  <div class="kicker reveal">02 — SERVICES</div>
+  <h2 class="reveal">Scalp &amp; Hair Spa</h2>
+  <p class="lede reveal">Targeted rituals for dryness, frizz, hair fall and everything in between.</p>
+
+  <div class="toggle-wrap reveal" data-active="0" id="scalpToggle">
+    <div class="toggle-slider"></div>
+    <button class="active" data-gender="gents">GENTS</button>
+    <button data-gender="ladies">LADIES</button>
+  </div>
+
+  <div class="gender-panel show" data-panel="gents" data-group="scalp">
+    <div class="subsection reveal">
+      <h3>Hair Spa</h3>
+      <div class="row"><span class="name">Dry &amp; Damaged Hair</span><span class="price">₹1,200</span></div>
+      <div class="row"><span class="name">Frizzy &amp; Unruly Hair</span><span class="price">₹1,200</span></div>
+      <div class="row"><span class="name">Chemically Treated Hair</span><span class="price">₹1,200</span></div>
+      <div class="row"><span class="name">Clear Dose</span><span class="price"><span class="was">₹600</span>₹600</span></div>
+      <div class="row"><span class="name">Inner Spa</span><span class="price">₹600</span></div>
+      <div class="row"><span class="name">Scalp Soothing</span><span class="price">₹1,200</span></div>
+    </div>
+    <div class="subsection reveal">
+      <h3>Advanced Hair Moisture</h3>
+      <div class="row"><span class="name">Moroccan Quickie</span><span class="price">₹1,500</span></div>
+      <div class="row"><span class="name">Moroccan Super Charge</span><span class="price">₹1,800</span></div>
+      <div class="row"><span class="name">Biotop Express</span><span class="price">₹2,500</span></div>
+      <div class="row"><span class="name">Biotop</span><span class="price">₹3,500</span></div>
+    </div>
+  </div>
+
+  <div class="gender-panel" data-panel="ladies" data-group="scalp">
+    <div class="subsection reveal">
+      <h3>Hair Spa</h3>
+      <div class="row"><span class="name">Dry &amp; Damaged Hair</span><span class="price">₹1,500</span></div>
+      <div class="row"><span class="name">Frizzy &amp; Unruly Hair</span><span class="price">₹2,000</span></div>
+      <div class="row"><span class="name">Chemically Treated Hair</span><span class="price">₹2,000</span></div>
+      <div class="row"><span class="name">Clear Dose</span><span class="price">₹600</span></div>
+      <div class="row"><span class="name">Inner Spa</span><span class="price">₹600</span></div>
+      <div class="row"><span class="name">Scalp Soothing</span><span class="price">₹1,500</span></div>
+    </div>
+    <div class="subsection reveal">
+      <h3>Advanced Hair Moisture</h3>
+      <div class="row"><span class="name">Moroccan Quickie</span><span class="price">₹3,000</span></div>
+      <div class="row"><span class="name">Moroccan Super Charge</span><span class="price">₹3,000</span></div>
+      <div class="row"><span class="name">Biotop Express</span><span class="price">₹2,500</span></div>
+      <div class="row"><span class="name">Biotop</span><span class="price">₹3,500</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal"><svg viewBox="0 0 100 24"><path d="M0 12 C20 -4 30 28 50 12 C70 -4 80 28 100 12" stroke="#c6963a" stroke-width="1.4" fill="none"/></svg></div>
+
+<!-- ===================== KERATASE RITUALS ===================== -->
+<section class="block" id="keratase">
+  <div class="kicker reveal">03 — SERVICES</div>
+  <h2 class="reveal">Kératase Rituals</h2>
+  <p class="lede reveal">Three tiers of ritual, from a fifteen-minute reset to a full ninety-minute restoration.</p>
+
+  <div class="tiers">
+    <div class="tier reveal">
+      <span class="tiernum">RITUAL 01</span>
+      <h3>Recruiter Ritual <small style="font-family:'Poppins',sans-serif;font-weight:400;font-size:12px;color:var(--ink-soft);">— 15 mins</small></h3>
+      <div class="row"><span class="name">Fusio Scrub Instant Detox</span><span class="price">₹2,200</span></div>
+      <div class="row"><span class="name">Instant Conditioning Ritual (Fusio Dose)</span><span class="price">₹2,200</span></div>
+    </div>
+
+    <div class="tier reveal">
+      <span class="tiernum">RITUAL 02</span>
+      <h3>Experience Ritual <small style="font-family:'Poppins',sans-serif;font-weight:400;font-size:12px;color:var(--ink-soft);">— 30 / 60 mins</small></h3>
+      <div class="row"><span class="name">Discipline</span><span class="price">₹3,500 / ₹4,500</span></div>
+      <div class="row"><span class="name">Curl Manifesto</span><span class="price">₹3,500 / ₹4,500</span></div>
+      <div class="row"><span class="name">Volume Control &amp; Smoothening</span><span class="price">₹3,500 / ₹4,500</span></div>
+      <div class="row"><span class="name">Colour Protection &amp; Radiance</span><span class="price">₹3,500 / ₹4,500</span></div>
+      <div class="row"><span class="name">Intensive Nourishing</span><span class="price">₹3,500 / ₹4,500</span></div>
+      <div class="row"><span class="name">Bond &amp; Fibre Strengthening</span><span class="price">₹3,500 / ₹4,500</span></div>
+      <div class="row"><span class="name">Densifying</span><span class="price">₹3,500 / ₹4,500</span></div>
+      <div class="row"><span class="name">Anti Hair Loss</span><span class="price">₹3,500 / ₹4,500</span></div>
+      <div class="row"><span class="name">Soothing Scalp</span><span class="price">₹3,500 / ₹4,500</span></div>
+      <div class="row"><span class="name">Anti Oiliness</span><span class="price">on request</span></div>
+    </div>
+
+    <div class="tier reveal">
+      <span class="tiernum">RITUAL 03</span>
+      <h3>Signature VIP Ritual <small style="font-family:'Poppins',sans-serif;font-weight:400;font-size:12px;color:var(--ink-soft);">— 90 mins</small></h3>
+      <div class="row"><span class="name">Chronologist Youth Revitalizing</span><span class="price">₹6,000</span></div>
+      <div class="row"><span class="name">Ultimate Bespoke Hair &amp; Scalp</span><span class="price">₹6,000</span></div>
+      <div class="row"><span class="name">Genesis Dual Action Hair Fall</span><span class="price">₹6,000</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider reveal"><svg viewBox="0 0 100 24"><path d="M0 12 C20 -4 30 28 50 12 C70 -4 80 28 100 12" stroke="#c6963a" stroke-width="1.4" fill="none"/></svg></div>
+
+<!-- ===================== FACIALS ===================== -->
+<section class="block" id="facials">
+  <div class="kicker reveal">04 — SERVICES</div>
+  <h2 class="reveal">Facials &amp; Clean-Ups</h2>
+  <p class="lede reveal">Naturliv, Laamis and Dermalogica — three houses, one glow.</p>
+
+  <div class="subsection reveal">
+    <p class="group-title">Naturliv</p>
+    <p class="group-sub">Clean-ups — 30 mins</p>
+    <div class="row"><span class="name">Detox Clean Up</span><span class="price">₹1,500</span></div>
+    <div class="row"><span class="name">De-Tan Clean Up</span><span class="price">₹1,500</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <p class="group-title">Naturliv Facial — without Sea Algae Mask</p>
+    <p class="group-sub">45 mins</p>
+    <div class="row"><span class="name">Aquaderm</span><span class="price">₹2,500</span></div>
+    <div class="row"><span class="name">Vitaderm</span><span class="price">₹2,500</span></div>
+    <div class="row"><span class="name">Sensitive</span><span class="price">₹2,500</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <p class="group-title">Naturliv Facial — with Sea Algae Mask</p>
+    <p class="group-sub">60 mins</p>
+    <div class="row"><span class="name">Aquaderm</span><span class="price"><span class="was">₹3,000</span>₹3,500</span></div>
+    <div class="row"><span class="name">Vitaderm</span><span class="price"><span class="was">₹3,000</span>₹3,500</span></div>
+    <div class="row"><span class="name">Sensitive</span><span class="price"><span class="was">₹3,000</span>₹3,500</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <p class="group-title">Laamis Organic Facial</p>
+    <p class="group-sub">60 mins</p>
+    <div class="row"><span class="name">Pure White Facial w/ Sea Algae Mask</span><span class="price"><span class="was">₹4,000</span>₹4,500</span></div>
+    <div class="row"><span class="name">Pure Youth Facial w/ Sea Algae Mask</span><span class="price"><span class="was">₹4,000</span>₹4,500</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <p class="group-title">Laamis Original Clean-Ups</p>
+    <p class="group-sub">30 mins</p>
+    <div class="row"><span class="name">Pure White Clean Up</span><span class="price"><span class="was">₹2,000</span>₹2,200</span></div>
+    <div class="row"><span class="name">Pure Youth Clean Up</span><span class="price"><span class="was">₹2,000</span>₹2,200</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <p class="group-title">Laamis</p>
+    <div class="row"><span class="name">Anti-Tan Out Mask</span><span class="price">₹1,000</span></div>
+    <div class="row"><span class="name">Peel-Off Skin Acai Mask</span><span class="price">₹1,000</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <p class="group-title">Dermalogica Treatment</p>
+    <p class="group-sub">60 mins</p>
+    <div class="row"><span class="name">Power Brightening Treatment</span><span class="price">₹5,000</span></div>
+    <div class="row"><span class="name">Age Smart Treatment</span><span class="price">₹5,000</span></div>
+    <div class="row"><span class="name">MediBac Clearing Treatment</span><span class="price">₹5,000</span></div>
+    <div class="row"><span class="name">Ultracalming Treatment</span><span class="price">₹5,000</span></div>
+    <div class="row"><span class="name">Treatment with Cooling Contour Mask</span><span class="price">₹5,500</span></div>
+    <div class="row"><span class="name">Contour Mask</span><span class="price">₹1,500</span></div>
+    <div class="row"><span class="name">Dermalogica Clean Up <small style="color:var(--ink-soft);">(30 mins)</small></span><span class="price">₹2,500</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <p class="group-title">Mintree</p>
+    <div class="row"><span class="name">Eye Mask</span><span class="price">₹250</span></div>
+    <div class="row"><span class="name">Lip Mask</span><span class="price">₹200</span></div>
+    <div class="row"><span class="name">Bikini Mask</span><span class="price">₹500</span></div>
+  </div>
+</section>
+
+<div class="divider reveal"><svg viewBox="0 0 100 24"><path d="M0 12 C20 -4 30 28 50 12 C70 -4 80 28 100 12" stroke="#c6963a" stroke-width="1.4" fill="none"/></svg></div>
+
+<!-- ===================== WAXING & BLEACH ===================== -->
+<section class="block" id="waxing">
+  <div class="kicker reveal">05 — SERVICES</div>
+  <h2 class="reveal">Bleach &amp; Body Waxing</h2>
+  <p class="lede reveal">Smooth, even, salon-finished.</p>
+
+  <div class="subsection reveal">
+    <h3>Bleach</h3>
+    <div class="row"><span class="name">Face Bleach</span><span class="price">₹600</span></div>
+    <div class="row"><span class="name">D-Tan</span><span class="price">₹700</span></div>
+    <div class="row"><span class="name">Full Arms</span><span class="price">₹750</span></div>
+    <div class="row"><span class="name">Full Legs</span><span class="price">₹850</span></div>
+    <div class="row"><span class="name">Face &amp; Neck</span><span class="price">₹700</span></div>
+    <div class="row"><span class="name">Full Body</span><span class="price">₹3,000</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <h3>Body Waxing</h3>
+    <div class="row"><span class="name">Full Arms &amp; Underarms</span><span class="price"><span class="was">₹700</span>₹850</span></div>
+    <div class="row"><span class="name">Half Arms</span><span class="price"><span class="was">₹500</span>₹600</span></div>
+    <div class="row"><span class="name">Full Legs</span><span class="price"><span class="was">₹800</span>₹950</span></div>
+    <div class="row"><span class="name">Half Legs</span><span class="price"><span class="was">₹500</span>₹600</span></div>
+    <div class="row"><span class="name">Full Wax</span><span class="price">₹1,500</span></div>
+    <div class="row"><span class="name">Under Arms</span><span class="price">₹250</span></div>
+    <div class="row"><span class="name">Full Body</span><span class="price">₹3,500</span></div>
+    <div class="row"><span class="name">B-Line</span><span class="price">₹1,200</span></div>
+    <div class="row"><span class="name">Full Front &amp; Back <small style="color:var(--ink-soft);">(each)</small></span><span class="price">₹1,000</span></div>
+    <div class="row"><span class="name">Midriff</span><span class="price">₹1,000</span></div>
+    <div class="row"><span class="name">Pinkini Brazilian Wax</span><span class="price">₹2,000</span></div>
+    <div class="row"><span class="name">Eyebrow Wax <small style="color:var(--ink-soft);">(peel off)</small></span><span class="price">₹200</span></div>
+    <div class="row"><span class="name">Under Arms <small style="color:var(--ink-soft);">(peel off)</small></span><span class="price">₹350</span></div>
+  </div>
+</section>
+
+<div class="divider reveal"><svg viewBox="0 0 100 24"><path d="M0 12 C20 -4 30 28 50 12 C70 -4 80 28 100 12" stroke="#c6963a" stroke-width="1.4" fill="none"/></svg></div>
+
+<!-- ===================== NAILS & SKIN ===================== -->
+<section class="block" id="skin">
+  <div class="kicker reveal">06 — SERVICES</div>
+  <h2 class="reveal">Body, Nails &amp; Skin</h2>
+  <p class="lede reveal">Polishing, manicures, pedicures and a little bit of luxury.</p>
+
+  <div class="subsection reveal">
+    <h3>Body Rejuvenation</h3>
+    <div class="row"><span class="name">Arms Polishing</span><span class="price">₹1,000</span></div>
+    <div class="row"><span class="name">Full Back Polishing</span><span class="price">₹1,000</span></div>
+    <div class="row"><span class="name">Full Body Polishing</span><span class="price">₹3,500</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <h3>Skin, Hand &amp; Feet</h3>
+    <div class="row"><span class="name">Manicure</span><span class="price">₹600</span></div>
+    <div class="row"><span class="name">French Manicure</span><span class="price">₹700</span></div>
+    <div class="row"><span class="name">Pedicure</span><span class="price">₹700</span></div>
+    <div class="row"><span class="name">French Pedicure</span><span class="price">₹800</span></div>
+    <div class="row"><span class="name">Nail Paint</span><span class="price">₹200</span></div>
+    <div class="row"><span class="name">Nail Filing</span><span class="price">₹200</span></div>
+    <div class="row"><span class="name">Nail Art</span><span class="price">₹2,000</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <h3>Spa — Hand &amp; Feet</h3>
+    <div class="row"><span class="name">Spa Manicure</span><span class="price">₹1,000</span></div>
+    <div class="row"><span class="name">Spa Pedicure</span><span class="price">₹1,000</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <h3>Luxury — Hand &amp; Feet</h3>
+    <div class="row"><span class="name">Luxury Manicure</span><span class="price">₹1,500</span></div>
+    <div class="row"><span class="name">Luxury Pedicure</span><span class="price">₹1,500</span></div>
+  </div>
+</section>
+
+<div class="divider reveal"><svg viewBox="0 0 100 24"><path d="M0 12 C20 -4 30 28 50 12 C70 -4 80 28 100 12" stroke="#c6963a" stroke-width="1.4" fill="none"/></svg></div>
+
+<!-- ===================== THREADING & FACE WAX ===================== -->
+<section class="block" id="threading">
+  <div class="kicker reveal">07 — SERVICES</div>
+  <h2 class="reveal">Threading &amp; Face Wax</h2>
+  <p class="lede reveal">The small finishing touches that make the biggest difference.</p>
+
+  <div class="subsection reveal">
+    <h3>Threading</h3>
+    <div class="row"><span class="name">Eyebrows</span><span class="price">₹100</span></div>
+    <div class="row"><span class="name">Upper Lip</span><span class="price">₹70</span></div>
+    <div class="row"><span class="name">Forehead</span><span class="price">₹70</span></div>
+    <div class="row"><span class="name">Chin</span><span class="price">₹70</span></div>
+    <div class="row"><span class="name">Full Face</span><span class="price">₹500</span></div>
+  </div>
+
+  <div class="subsection reveal">
+    <h3>Face Wax</h3>
+    <div class="row"><span class="name">Eyebrow Wax</span><span class="price">₹200</span></div>
+    <div class="row"><span class="name">Forehead Wax</span><span class="price">₹200</span></div>
+    <div class="row"><span class="name">Upper Lip Wax</span><span class="price">₹120</span></div>
+    <div class="row"><span class="name">Nose Wax</span><span class="price">₹100</span></div>
+    <div class="row"><span class="name">Lower Lip</span><span class="price">₹120</span></div>
+    <div class="row"><span class="name">Chin Wax</span><span class="price">₹200</span></div>
+    <div class="row"><span class="name">Neck Wax</span><span class="price">₹500</span></div>
+    <div class="row"><span class="name">Side Lock</span><span class="price">₹300</span></div>
+  </div>
+</section>
+
+<footer>
+  <h2>LOOKS SALON</h2>
+  <p>Walk-ins welcome. Prices are per session and subject to change without prior notice — ask at the counter for today's offers.</p>
+  <div class="fine">RATE CARD · UPDATED 2026 · KOLKATA</div>
+</footer>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  revealEls.forEach(el=>io.observe(el));
+
+  // gender toggles (independent per section)
+  document.querySelectorAll('.toggle-wrap').forEach(wrap=>{
+    const buttons = wrap.querySelectorAll('button');
+    buttons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const gender = btn.dataset.gender;
+        const idx = gender === 'ladies' ? 1 : 0;
+        wrap.dataset.active = idx;
+        buttons.forEach(b=>b.classList.toggle('active', b===btn));
+
+        const section = wrap.closest('section');
+        section.querySelectorAll('.gender-panel').forEach(panel=>{
+          panel.classList.toggle('show', panel.dataset.panel === gender);
+        });
+      });
+    });
+  });
+
+  // active nav link on scroll
+  const sections = document.querySelectorAll('section.block[id]');
+  const navLinks = document.querySelectorAll('.navlinks a');
+  const navIO = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const link = document.querySelector('.navlinks a[href="#'+entry.target.id+'"]');
+      if(!link) return;
+      if(entry.isIntersecting){
+        navLinks.forEach(l=>l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  },{ rootMargin:'-40% 0px -50% 0px', threshold:0 });
+  sections.forEach(s=>navIO.observe(s));
+</script>
+
+</body>
+</html>
