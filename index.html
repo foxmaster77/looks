@@ -291,9 +291,45 @@
   footer p{ color:var(--ink-soft); font-size:13.5px; max-width:420px; margin:0 auto 26px; font-weight:300; line-height:1.7;}
   footer .fine{ margin-top:40px; font-size:11px; color:var(--was); letter-spacing:.5px; }
 
+  /* ---------- mobile sticky bar ---------- */
+  .mobile-sticky-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #3A2113;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 10px calc(12px + env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-top: 1px solid rgba(212,175,55,0.35);
+  }
+
+  .mobile-sticky-bar a {
+    flex: 1;
+    text-align: center;
+    color: #D4AF37;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 10px 12px;
+    border: 1px solid #D4AF37;
+    border-radius: 8px;
+    font-size: 13px;
+    background: rgba(212,175,55,0.04);
+    letter-spacing: 0.3px;
+  }
+
   @media(max-width:640px){
     section.block{padding:70px 20px 10px;}
     .topnav-inner{padding:12px 16px;}
+    body{padding-bottom:72px;}
+  }
+
+  @media (min-width: 641px){
+    .mobile-sticky-bar{ display:none; }
   }
 </style>
 </head>
@@ -701,6 +737,12 @@
   <p>Walk-ins welcome. Prices are per session and subject to change without prior notice — ask at the counter for today's offers.</p>
   <div class="fine">RATE CARD · UPDATED 2026 · KOLKATA</div>
 </footer>
+
+<div class="mobile-sticky-bar" aria-label="Quick actions">
+  <a href="#hair">Hair</a>
+  <a href="#facials">Facials</a>
+  <a href="#waxing">Wax</a>
+</div>
 
 <script>
   // scroll reveal
